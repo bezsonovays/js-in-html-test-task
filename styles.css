@@ -1,0 +1,268 @@
+/*Обнулення*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+
+/*--------------------*/
+
+section {
+    padding: 50px 0;
+}
+
+.wrapper {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.1;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.title {
+    font-size: 32px;
+    color: #424242;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.featured__slider {
+    display: grid;
+    grid-template: 
+            'a b'  auto 
+            'a c' auto / 60% 1fr;
+    grid-gap: 30px;
+}
+.area1 {
+    grid-area: a;
+}
+.area2 {
+    grid-area: b;
+}
+.area3 {
+    grid-area: c;
+}
+.area4 {
+    grid-area: d;
+}
+.area5 {
+    grid-area: e;
+}
+
+.featured__slide {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    height: 100%;
+}
+
+
+ .featured__slide:nth-child(4),
+ .featured__slide:nth-child(5) {
+    display: none;
+}
+
+.featured__slide::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+   background: linear-gradient(360deg,rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 32%, transparent 100%);
+
+}
+
+.active {
+    height: 500px ; 
+}
+
+.top::after {
+    content: url('./icons/star-solid.svg');
+    position: absolute;
+    width: 20px;
+    top: 20px;
+    left: 20px;
+}
+
+.star::after {
+    content: url('./icons/star-solid.svg');
+    position: absolute;
+    width: 20px;
+    top: 20px;
+    left: 20px;
+}
+
+.slide__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.slide__title {
+    color: #fff;
+    font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.slide__tags {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 12px;
+}
+
+.last__banner {
+    max-width: 300px;
+    width: 100%;
+    height: 400px;
+    background-color: #a4a4a4;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last__block, 
+.last__wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+
+.last__item {
+    width: 100%;
+    min-width: 200px;
+    position: relative;
+}
+
+.item__img img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 10px;
+}
+
+.item__title {
+    color: #212121;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.item__tags span {
+  color: rgba(66, 66, 66, 0.66);
+  font-size: 12px;
+}
+
+@media screen and (max-width: 680px) {
+     .featured__slider {
+            grid-template:
+                'a a'
+                'b c'
+                'd e';
+        }
+        .featured__slide:nth-child(4),
+        .featured__slide:nth-child(5) {
+                display: block;
+            }
+
+        .featured__slide {
+            height: 250px;
+        }
+
+        .active {
+             height: 370px;
+        }                 
+        .last__banner {
+            display: none;
+        }
+        }
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 22px;
+        text-align: center;
+    }
+    .featured__slider {
+             grid-template: 
+             'a'
+             'b'
+             'c'
+             'd'
+             'e';
+         }
+      .active {
+         height: 250px;
+        }  
+     .last__block {
+        flex-wrap: wrap;
+     }
+}
