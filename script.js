@@ -21,11 +21,11 @@ const createContent = async () => {
     let featuredTemplate = '';
     let lastTemplate = '';
 
-    let raitingSort = JSON.parse(JSON.stringify(result)).sort((a,b) =>a.rating - b.rating);
+    const raitingSort = JSON.parse(JSON.stringify(result)).sort((a,b) =>a.rating - b.rating);
     raitingSort.forEach(({image, tags, title}, index) => {
         if(index < 5) {
                 featuredTemplate += `
-                    <div class="featured__slide area${index + 1} ${index === 0 ? 'active' : ''}  top" style="background-image: url('${image}')">
+                    <div class="featured__slide card area${index + 1} ${index === 0 ? 'active' : ''}  star " style="background-image: url('${image}')">
                         <div class="slide__info">
                             <h4 class="slide__title">${title}</h4>
                             <div class="slide__tags">`
@@ -35,11 +35,11 @@ const createContent = async () => {
     });
     slider.innerHTML = featuredTemplate;
 
-    let lastSort = JSON.parse(JSON.stringify(result)).sort((a,b) =>a.age - b.age);
+    const lastSort = JSON.parse(JSON.stringify(result)).sort((a,b) =>a.age - b.age);
     lastSort.forEach(({image, tags, title}, index) => {
         if(index < 2) {
             lastTemplate += `
-                        <div class="last__item">
+                        <div class="last__item card star" )>
                             <div class="item__img">
                                 <img src="${image}" alt="${title}">
                             </div>
@@ -56,9 +56,17 @@ const createContent = async () => {
 const sortElements = async () => {
     await createContent();
 
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('click', ({currentTarget}) => {
+            !currentTarget.matches('.top') ? currentTarget.classList.add('top') : currentTarget.classList.remove('top')
+        })
+    })
+
+
     // 1. Визначити загальну кількість елементів у DOM-дереві.
     const elementsArr = document.querySelectorAll('*');
-    console.log(`1. Загальна кількість елементів - ${elementsArr.length}`)
+    console.log(`Загальна кількість елементів - ${elementsArr.length}`)
 
     // 2. Згрупувати елементи за назвою тегу, визначити кількість елементів для
     // кожного тегу.
@@ -73,19 +81,21 @@ const sortElements = async () => {
                     })
                 }   
             })
-        console.log(tagsCount);
+
+     for (let tag in tagsCount) {
+        console.log(`${tag} = ${tagsCount[tag]} раз(ів) зустрічається`);
+    }
 
     // 3. Згрупувати елементи за кількістю символів у назві тегу, визначити
     // кількість елементів.
     let tagLength = [];
     elementsArr.forEach(tag => tagLength.push(tag.tagName.length))
-    console.log(tagLength)
 
     let result = {};
-    for (let i = 0; i < tagLength.length; ++i) {
-        var a = tagLength[i];
+    for (let i = 0; i < tagLength.length; i++) {
+        let a = tagLength[i];
         if (result[a] != undefined)
-            ++result[a];
+            result[a]++;
         else
             result[a] = 1;
     }
@@ -95,4 +105,5 @@ const sortElements = async () => {
     }
 
 sortElements();
+
 

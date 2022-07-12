@@ -145,20 +145,19 @@ section {
     height: 500px ; 
 }
 
-.top::after {
-    content: url('./icons/star-solid.svg');
+.star::after {
+    content: url('./icons/star-regular.svg');
     position: absolute;
     width: 20px;
     top: 20px;
     left: 20px;
 }
 
-.star::after {
+.top::after {
     content: url('./icons/star-solid.svg');
-    position: absolute;
-    width: 20px;
-    top: 20px;
-    left: 20px;
+}
+.card {
+    cursor:pointer
 }
 
 .slide__info {
