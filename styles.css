@@ -79,7 +79,7 @@ section {
     width: 100%;
     max-width: 960px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 70px;
 }
 
 .title {
@@ -88,14 +88,20 @@ section {
     text-transform: uppercase;
     margin-bottom: 10px;
 }
-
 .featured__slider {
-    display: grid;
-    grid-template: 
-            'a b'  auto 
-            'a c' auto / 60% 1fr;
-    grid-gap: 30px;
+    position: relative;
 }
+
+.slider__block {
+    display: grid;
+    -ms-grid-rows: auto 30px auto;
+    -ms-grid-columns: 60% 30px 1fr;
+        grid-template:
+            'a b' auto
+            'a c' auto / 60% 1fr;
+        grid-gap: 30px;
+}
+
 .area1 {
     grid-area: a;
 }
@@ -112,32 +118,72 @@ section {
     grid-area: e;
 }
 
-.featured__slide {
+.slider__arrows > div {
+    width: 60px;
+    height: 120px;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.arrow__back {
+    background-image: url(./icons/back.svg);
+    left: -70px;
+}
+
+.arrow__next {
+    background-image: url(./icons/next.svg);
+    right: -70px;
+}
+
+.arrow__back:hover {
+    background-image: url(./icons/back-hover.svg);
+    background-color: #616161;
+}
+
+.arrow__next:hover {
+    background-image: url(./icons/next-hover.svg);
+    background-color: #616161;
+}
+
+.slider__item {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: relative;
     padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     min-width: 200px;
     height: 100%;
 }
 
-
- .featured__slide:nth-child(4),
- .featured__slide:nth-child(5) {
+ .slider__item:nth-child(4),
+ .slider__item:nth-child(5) {
     display: none;
 }
 
-.featured__slide::before {
+.slider__item::before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 200px;
-   background: linear-gradient(360deg,rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 32%, transparent 100%);
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.8)), color-stop(32%, rgba(0, 0, 0, 0.5)), to(transparent));
+        background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 32%, transparent 100%);
+        background: linear-gradient(360deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 32%, transparent 100%);
 
 }
 
@@ -184,13 +230,21 @@ section {
     height: 400px;
     background-color: #a4a4a4;
     color: grey;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
 .last__block, 
 .last__wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: 30px;
 }
@@ -205,8 +259,10 @@ section {
 .item__img img{
     width: 100%;
     height: 250px;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+        object-fit: cover;
+    -o-object-position: center;
+        object-position: center;
     margin-bottom: 10px;
 }
 
@@ -222,20 +278,26 @@ section {
 }
 
 @media screen and (max-width: 680px) {
-     .featured__slider {
+    .container {
+        padding: 0 20px;
+    }
+     .slider__block {
             grid-template:
                 'a a'
                 'b c'
                 'd e';
         }
-        .featured__slide:nth-child(4),
-        .featured__slide:nth-child(5) {
+        .slider__item:nth-child(4),
+        .slider__item:nth-child(5) {
                 display: block;
             }
 
-        .featured__slide {
+        .slider__item {
             height: 250px;
         }
+        .slider__arrows {
+            display: none;
+            }
 
         .active {
              height: 370px;
@@ -245,13 +307,13 @@ section {
         }
         }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 520px) {
     .title {
         font-size: 22px;
         text-align: center;
     }
-    .featured__slider {
-             grid-template: 
+    .slider__block {
+        grid-template: 
              'a'
              'b'
              'c'

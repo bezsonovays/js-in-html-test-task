@@ -1,11 +1,10 @@
-// Підготувати адаптивну верстку сторінки для умовного сайту-каталогу
-// зображень.
+// Підготувати адаптивну верстку сторінки для умовного сайту-каталогу  зображень.
 // Після завантаження сторінки в браузері js звертається до серверу, отримує
 // відповідь бекенду на основі якої і будується все відображення.
 // Featured містить 5 елементів з найкращим рейтингом,
 // Last містить 2 самих нових елементів
 
-const slider = document.querySelector('.featured__slider');
+const slider = document.querySelector('.slider__block');
 const last = document.querySelector('.last__block');
 
 const getData = async () => {
@@ -25,12 +24,12 @@ const createContent = async () => {
     raitingSort.forEach(({image, tags, title}, index) => {
         if(index < 5) {
                 featuredTemplate += `
-                    <div class="featured__slide card area${index + 1} ${index === 0 ? 'active' : ''}  star " style="background-image: url('${image}')">
+                    <article class="slider__item card area${index + 1} ${index === 0 ? 'active' : ''}  star " style="background-image: url('${image}')">
                         <div class="slide__info">
                             <h4 class="slide__title">${title}</h4>
                             <div class="slide__tags">`
                             tags.forEach(tag => featuredTemplate += `<span>#${tag}</span> `);
-                featuredTemplate += `</div></div></div>`
+                featuredTemplate += `</div></div></article>`
         }
     });
     slider.innerHTML = featuredTemplate;
@@ -39,7 +38,7 @@ const createContent = async () => {
     lastSort.forEach(({image, tags, title}, index) => {
         if(index < 2) {
             lastTemplate += `
-                        <div class="last__item card star" )>
+                        <article class="last__item card star" )>
                             <div class="item__img">
                                 <img src="${image}" alt="${title}">
                             </div>
@@ -47,7 +46,7 @@ const createContent = async () => {
                                 <h4 class="item__title">${title}</h4>
                                 <div class="item__tags">`
                                 tags.forEach(tag => lastTemplate += `<span>#${tag}</span> `);
-            lastTemplate += `</div></div></div>`
+            lastTemplate += `</div></div></article>`
         }
      })
      last.innerHTML = lastTemplate;
