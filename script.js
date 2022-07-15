@@ -18,8 +18,8 @@ const getData = async () => {
 const createContent = async () => {
     let loader = '<div class="loader__wrapper"><div class="loader"></div></div>';
     slider.innerHTML = loader;
-    last.innerHTML;
-    
+    last.innerHTML = loader;
+
     let result = await getData();
     console.log(result)
 
