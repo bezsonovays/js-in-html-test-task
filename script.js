@@ -6,14 +6,20 @@
 
 const slider = document.querySelector('.slider__block');
 const last = document.querySelector('.last__block');
+const wrapper = document.querySelector('.wrapper');
 
 const getData = async () => {
-      return  await fetch('./data.json')
+       return  await fetch('./data.json')
                 .then(res => res.json())
                 .then(data => data)
+                .catch(error => console.log(error))
     }
 
 const createContent = async () => {
+    let loader = '<div class="loader__wrapper"><div class="loader"></div></div>';
+    slider.innerHTML = loader;
+    last.innerHTML;
+    
     let result = await getData();
     console.log(result)
 
@@ -24,7 +30,8 @@ const createContent = async () => {
     raitingSort.forEach(({image, tags, title}, index) => {
         if(index < 5) {
                 featuredTemplate += `
-                    <article class="slider__item card area${index + 1} ${index === 0 ? 'active' : ''}  star " style="background-image: url('${image}')">
+                    <article class="slider__item card area${index + 1} ${index === 0 ? 'active' : ''}  star ">
+                        <img src="${image}" alt="${title}">
                         <div class="slide__info">
                             <h4 class="slide__title">${title}</h4>
                             <div class="slide__tags">`
@@ -91,16 +98,10 @@ const sortElements = async () => {
     elementsArr.forEach(tag => tagLength.push(tag.tagName.length))
 
     let result = {};
-    for (let i = 0; i < tagLength.length; i++) {
-        let a = tagLength[i];
-        if (result[a] != undefined)
-            result[a]++;
-        else
-            result[a] = 1;
-    }
-    
-    for (let key in result)
-     console.log(`${key} символа(ів) в tag = ${result[key]} разів`);
+    tagLength.forEach(el => !result[el] ? result[el] = 1 : result[el]++ )
+
+     for (let key in result)
+        console.log(`${key} символа(ів) в tag = ${result[key]} разів`);
     }
 
 sortElements();

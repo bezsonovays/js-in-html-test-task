@@ -130,6 +130,10 @@ section {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .arrow__back {
@@ -153,11 +157,7 @@ section {
 }
 
 .slider__item {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
     position: relative;
-    padding: 20px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -169,9 +169,32 @@ section {
     height: 100%;
 }
 
+.card {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card img{
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+     transition: all 0.4 ease;
+}
+
+.card:hover img {
+    transform: scale(1.2);
+}
+
  .slider__item:nth-child(4),
  .slider__item:nth-child(5) {
     display: none;
+}
+
+.slider__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .slider__item::before {
@@ -201,9 +224,6 @@ section {
 
 .top::after {
     content: url('./icons/star-solid.svg');
-}
-.card {
-    cursor:pointer
 }
 
 .slide__info {
@@ -252,13 +272,20 @@ section {
 
 .last__item {
     width: 100%;
+    height: 100%;
     min-width: 200px;
     position: relative;
 }
 
+.item__img {
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
 .item__img img{
     width: 100%;
-    height: 250px;
+    height: 100%;
     -o-object-fit: cover;
         object-fit: cover;
     -o-object-position: center;
@@ -275,6 +302,34 @@ section {
 .item__tags span {
   color: rgba(66, 66, 66, 0.66);
   font-size: 12px;
+}
+.loader__wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px dashed rgb(3 145 145);
+    animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.4)
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
 }
 
 @media screen and (max-width: 680px) {
