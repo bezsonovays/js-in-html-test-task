@@ -118,43 +118,6 @@ section {
     grid-area: e;
 }
 
-.slider__arrows > div {
-    width: 60px;
-    height: 120px;
-    background-size: 40px;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    cursor: pointer;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.arrow__back {
-    background-image: url(./icons/back.svg);
-    left: -70px;
-}
-
-.arrow__next {
-    background-image: url(./icons/next.svg);
-    right: -70px;
-}
-
-.arrow__back:hover {
-    background-image: url(./icons/back-hover.svg);
-    background-color: #616161;
-}
-
-.arrow__next:hover {
-    background-image: url(./icons/next-hover.svg);
-    background-color: #616161;
-}
 
 .slider__item {
     position: relative;
